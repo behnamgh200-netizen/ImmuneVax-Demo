@@ -211,10 +211,93 @@
       </div>
     </section>
 
+
+    <section class="research-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">6 · Evidence & provenance</p>
+            <h2>Traceable scientific record</h2>
+          </div>
+          <span class="status safe">Local audit trail</span>
+        </div>
+        <div id="provenanceGrid" class="provenance-grid"></div>
+        <div class="method-note">
+          Every demo result is tied to its structure name, parser mode, analysis version, source type, scenario, and review state. This mirrors the provenance layer planned for the private project.
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">7 · Integration readiness</p>
+            <h2>Where external scientific tools fit</h2>
+          </div>
+          <span class="status">Adapters only</span>
+        </div>
+        <div class="integration-list">
+          <div><strong>IEDB / ImmPort</strong><span>evidence sources</span><em>planned</em></div>
+          <div><strong>UniProt / PDB / NCBI</strong><span>sequence & structure metadata</span><em>planned</em></div>
+          <div><strong>AlphaFold / FoldX</strong><span>structural prediction & stability adapters</span><em>planned</em></div>
+          <div><strong>PhysiCell</strong><span>future cell-level simulation engine</span><em>planned</em></div>
+        </div>
+        <p class="note">No external service is called from this public demo. These cards show the intended modular adapter boundary.</p>
+      </div>
+    </section>
+
+    <section class="panel compare-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">8 · Compare runs</p>
+          <h2>Side-by-side local comparison</h2>
+        </div>
+        <span class="status">Interview tool</span>
+      </div>
+      <p class="note">Load one structure and save it as A, then load another structure and save it as B. The comparison stays only in this browser tab.</p>
+      <div class="compare-actions">
+        <button id="saveSnapshotA" class="button ghost" type="button">Save current as A</button>
+        <button id="saveSnapshotB" class="button ghost" type="button">Save current as B</button>
+        <button id="clearSnapshots" class="small-button" type="button">Clear comparison</button>
+      </div>
+      <div id="comparisonArea" class="comparison-area">
+        <div class="comparison-empty">Save two analyses to compare them.</div>
+      </div>
+    </section>
+
+    <section class="panel review-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">9 · Human scientific review</p>
+          <h2>Researcher remains the final gate</h2>
+        </div>
+        <span id="reviewBadge" class="status warning">Pending</span>
+      </div>
+      <div class="review-grid">
+        <label>
+          Review state
+          <select id="reviewStatus">
+            <option value="Pending">Pending</option>
+            <option value="Reviewed">Reviewed</option>
+            <option value="Needs revision">Needs revision</option>
+          </select>
+        </label>
+        <label>
+          Reviewer note
+          <textarea id="reviewNotes" rows="4" placeholder="Example: Geometry is interpretable, but immune interpretation remains illustrative."></textarea>
+        </label>
+      </div>
+      <div class="review-actions">
+        <button id="saveReview" class="button primary" type="button">Save review locally</button>
+        <button id="exportRecord" class="button ghost" type="button">Export demo record JSON</button>
+      </div>
+      <p class="note">Review state is stored only in memory for this browser tab and is included in the exported demo record.</p>
+    </section>
+
+
     <section class="panel report-panel">
       <div class="panel-head">
         <div>
-          <p class="eyebrow">6 · Report</p>
+          <p class="eyebrow">10 · Report</p>
           <h2>Interview-ready scientific summary</h2>
         </div>
         <button id="copyReport" class="button ghost" type="button">Copy report</button>
