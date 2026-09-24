@@ -24,6 +24,12 @@ let currentSourceMeta = {
   truncated: false,
   totalProteinAtoms: atoms.length
 };
+let latestHeuristic = null;
+let latestRecognition = null;
+const snapshots = {A:null, B:null};
+let reviewState = {status:"Pending", notes:"", reviewedAt:null};
+const DEMO_ANALYSIS_VERSION = "geometry-v0.3";
+const DEMO_HEURISTIC_VERSION = "apc-heuristic-v0.2";
 
 function makeSynthetic(kind, count) {
   const points = [];
@@ -406,7 +412,10 @@ function runAnalysis(){
   }
 
   const recognition = renderImmuneRecognition(latestAnalysis, scenario);
+  latestHeuristic = heuristic;
+  latestRecognition = recognition;
   renderTimeline(scenario, heuristic);
+  renderProvenance(scenario);
   renderReport(scenario, heuristic, recognition);
   updateMiniProtein();
 }
@@ -457,6 +466,9 @@ function renderReport(scenario, heuristic, recognition){
     "- not a vaccine recommendation",
     "- no clinical inference",
     "",
+    `Human review status: ${reviewState.status}`,
+    `Human review note: ${reviewState.notes || "none"}`,
+    "",
     "Final status: HUMAN SCIENTIFIC REVIEW REQUIRED"
   ];
   document.querySelector("#reportOutput").textContent=lines.join("\n");
@@ -477,6 +489,162 @@ function updateMiniProtein(){
   document.querySelector("#proteinLabel").textContent=structureName;
 }
 
+
+function simpleHash(input){
+  let hash=2166136261;
+  for(let i=0;i<input.length;i++){
+    hash ^= input.charCodeAt(i);
+    hash = Math.imul(hash,16777619);
+  }
+  return (hash>>>0).toString(16).padStart(8,"0");
+}
+
+function currentRecordId(){
+  const signature = [
+    structureName,
+    latestAnalysis?.atomCount || 0,
+    latestAnalysis?.residueCount || 0,
+    latestAnalysis?.chainCount || 0,
+    latestAnalysis?.patchCount || 0
+  ].join("|");
+  return "IVX-" + simpleHash(signature).toUpperCase();
+}
+
+function renderProvenance(scenario){
+  const sourceLabel = currentSourceMeta.sourceType === "pdb" ? "Local PDB file" : "Synthetic demo structure";
+  const cards = [
+    ["Record ID", currentRecordId()],
+    ["Structure", structureName],
+    ["Source", sourceLabel],
+    ["Scenario", scenario === "apc" ? "APC encounter heuristic" : "Scientific review only"],
+    ["Geometry model", DEMO_ANALYSIS_VERSION],
+    ["Immune model", scenario === "apc" ? DEMO_HEURISTIC_VERSION : "disabled"],
+    ["Protein chains", String(latestAnalysis.chainCount)],
+    ["HETATM excluded", String(currentSourceMeta.excludedHetatm || 0)]
+  ];
+  document.querySelector("#provenanceGrid").innerHTML = cards.map(([label,value]) =>
+    `<div class="provenance-card"><span>${label}</span><strong>${value}</strong></div>`
+  ).join("");
+}
+
+function makeSnapshot(){
+  const scenario = document.querySelector("#scenarioSelect").value;
+  const recognition = latestRecognition || computeImmuneRecognition(latestAnalysis);
+  return {
+    recordId: currentRecordId(),
+    structureName,
+    sourceType: currentSourceMeta.sourceType,
+    scenario,
+    analysis: {
+      atomCount: latestAnalysis.atomCount,
+      residueCount: latestAnalysis.residueCount,
+      chainCount: latestAnalysis.chainCount,
+      exposedFraction: latestAnalysis.exposedFraction,
+      compactness: latestAnalysis.compactness,
+      spread: latestAnalysis.spread,
+      patchCount: latestAnalysis.patchCount
+    },
+    recognition: {
+      index: scenario === "apc" ? recognition.recognitionIndex : null,
+      band: scenario === "apc" ? recognition.band : "review only",
+      confidence: scenario === "apc" ? recognition.confidence : null
+    }
+  };
+}
+
+function compareCell(value, formatter){
+  return formatter ? formatter(value) : String(value);
+}
+
+function renderComparison(){
+  const area=document.querySelector("#comparisonArea");
+  if(!snapshots.A || !snapshots.B){
+    const labels=[
+      snapshots.A ? `A saved: ${snapshots.A.structureName}` : "A not saved",
+      snapshots.B ? `B saved: ${snapshots.B.structureName}` : "B not saved"
+    ];
+    area.innerHTML=`<div class="comparison-empty">${labels.join(" · ")}</div>`;
+    return;
+  }
+
+  const rows=[
+    ["Protein atoms", snapshots.A.analysis.atomCount, snapshots.B.analysis.atomCount, v=>String(v)],
+    ["Protein residues", snapshots.A.analysis.residueCount, snapshots.B.analysis.residueCount, v=>String(v)],
+    ["Chains", snapshots.A.analysis.chainCount, snapshots.B.analysis.chainCount, v=>String(v)],
+    ["Surface proxy", snapshots.A.analysis.exposedFraction, snapshots.B.analysis.exposedFraction, v=>(v*100).toFixed(1)+"%"],
+    ["Compactness", snapshots.A.analysis.compactness, snapshots.B.analysis.compactness, v=>v.toFixed(2)],
+    ["Shape spread", snapshots.A.analysis.spread, snapshots.B.analysis.spread, v=>v.toFixed(2)],
+    ["Surface patches", snapshots.A.analysis.patchCount, snapshots.B.analysis.patchCount, v=>String(v)],
+    ["APC recognition index", snapshots.A.recognition.index, snapshots.B.recognition.index, v=>v===null?"N/A":v+"%"],
+    ["Recognition band", snapshots.A.recognition.band, snapshots.B.recognition.band, v=>String(v)]
+  ];
+
+  area.innerHTML=`
+    <table class="compare-table">
+      <thead><tr><th>Metric</th><th>A · ${snapshots.A.structureName}</th><th>B · ${snapshots.B.structureName}</th></tr></thead>
+      <tbody>
+        ${rows.map(([label,a,b,fmt])=>`
+          <tr><td>${label}</td><td>${compareCell(a,fmt)}</td><td>${compareCell(b,fmt)}</td></tr>
+        `).join("")}
+      </tbody>
+    </table>`;
+}
+
+function buildDemoRecord(){
+  const scenario=document.querySelector("#scenarioSelect").value;
+  return {
+    schema_version:"immunevax-demo-record-1.0",
+    record_id:currentRecordId(),
+    generated_at:new Date().toISOString(),
+    structure:{
+      name:structureName,
+      source_type:currentSourceMeta.sourceType,
+      protein_atoms:latestAnalysis.atomCount,
+      residues:latestAnalysis.residueCount,
+      chains:latestAnalysis.chainCount,
+      excluded_hetatm:currentSourceMeta.excludedHetatm || 0,
+      truncated:Boolean(currentSourceMeta.truncated)
+    },
+    analysis:{
+      version:DEMO_ANALYSIS_VERSION,
+      surface_proxy:Number(latestAnalysis.exposedFraction.toFixed(4)),
+      compactness:Number(latestAnalysis.compactness.toFixed(4)),
+      shape_spread:Number(latestAnalysis.spread.toFixed(4)),
+      surface_patches:latestAnalysis.patchCount
+    },
+    immune_demo:{
+      enabled:scenario==="apc",
+      version:DEMO_HEURISTIC_VERSION,
+      engagement_index:scenario==="apc"?latestHeuristic.score:null,
+      recognition_index:scenario==="apc"?latestRecognition.recognitionIndex:null,
+      recognition_band:scenario==="apc"?latestRecognition.band:"review only",
+      confidence:scenario==="apc"?latestRecognition.confidence:null,
+      boundary:"Educational heuristic only; not a biological probability or vaccine efficacy estimate."
+    },
+    human_review:{...reviewState},
+    limitations:[
+      "not molecular docking",
+      "not solvent-accessibility calculation",
+      "not epitope prediction",
+      "not a vaccine recommendation",
+      "no clinical inference"
+    ]
+  };
+}
+
+function downloadJson(filename, payload){
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement("a");
+  link.href=url;
+  link.download=filename;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+
 function resetViewForNewStructure(){
   rotation={x:-0.32,y:0.58};
   zoom=1;
@@ -491,6 +659,49 @@ document.querySelector("#scenarioSelect").addEventListener("change",()=>{
   runAnalysis();
   showToast("Scenario updated");
 });
+
+document.querySelector("#saveSnapshotA").addEventListener("click",()=>{
+  snapshots.A=makeSnapshot();
+  renderComparison();
+  showToast("Current analysis saved as A");
+});
+
+document.querySelector("#saveSnapshotB").addEventListener("click",()=>{
+  snapshots.B=makeSnapshot();
+  renderComparison();
+  showToast("Current analysis saved as B");
+});
+
+document.querySelector("#clearSnapshots").addEventListener("click",()=>{
+  snapshots.A=null;
+  snapshots.B=null;
+  renderComparison();
+  showToast("Comparison cleared");
+});
+
+document.querySelector("#saveReview").addEventListener("click",()=>{
+  reviewState={
+    status:document.querySelector("#reviewStatus").value,
+    notes:document.querySelector("#reviewNotes").value.trim(),
+    reviewedAt:new Date().toISOString()
+  };
+  const badge=document.querySelector("#reviewBadge");
+  badge.textContent=reviewState.status;
+  badge.className="status " + (reviewState.status==="Reviewed" ? "safe" : "warning");
+  runAnalysis();
+  showToast("Human review saved locally");
+});
+
+document.querySelector("#exportRecord").addEventListener("click",()=>{
+  const record=buildDemoRecord();
+  const safeName=structureName.replace(/[^a-z0-9_-]+/gi,"_").replace(/^_+|_+$/g,"") || "structure";
+  downloadJson(`ImmuneVax_${safeName}_demo-record.json`,record);
+  showToast("Demo record exported");
+});
+
+renderComparison();
+
+
 document.querySelector("#copyReport").addEventListener("click",async()=>{
   const text=document.querySelector("#reportOutput").textContent;
   try{await navigator.clipboard.writeText(text);showToast("Report copied");}
