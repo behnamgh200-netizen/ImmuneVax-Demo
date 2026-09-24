@@ -97,3 +97,28 @@ pre{white-space:pre-wrap;margin:0;padding:18px;border:1px solid #18384a;border-r
 .immune-summary-text{margin:13px 0 0;color:#b8ccd8;font-size:.82rem}
 .immune-boundary{margin:10px 0 0;padding-top:10px;border-top:1px solid #1c3646;color:#7893a5;font-size:.72rem}
 @media(max-width:640px){.immune-summary-grid{grid-template-columns:1fr}.immune-summary-head{flex-direction:column}}
+
+.research-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.provenance-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.provenance-card{padding:12px;border:1px solid #1b394b;border-radius:12px;background:#081722}
+.provenance-card span{display:block;color:#7f9caf;font-size:.69rem;margin-bottom:5px}
+.provenance-card strong{display:block;color:#e7f4fc;font-size:.9rem;word-break:break-word}
+.integration-list{display:grid;gap:9px}
+.integration-list>div{display:grid;grid-template-columns:1.1fr 1.5fr auto;gap:12px;align-items:center;padding:11px;border:1px solid #1b394b;border-radius:12px;background:#081722}
+.integration-list span{color:#8da6b8;font-size:.75rem}
+.integration-list em{font-style:normal;color:#89d6ff;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+.compare-panel,.review-panel{margin-top:16px}
+.compare-actions,.review-actions{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.comparison-area{margin-top:14px}
+.comparison-empty{padding:20px;border:1px dashed #31536a;border-radius:13px;color:#7f9caf;text-align:center;background:#081722}
+.compare-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:13px}
+.compare-table th,.compare-table td{padding:11px;border-bottom:1px solid #1b394b;text-align:left;font-size:.78rem}
+.compare-table th{color:#dcecf6;background:#102638}
+.compare-table td{color:#a9bfce;background:#081722}
+.compare-table td:first-child{color:#7f9caf;width:34%}
+.delta-up{color:#8ce7c4!important}.delta-down{color:#f3c75f!important}
+.review-grid{display:grid;grid-template-columns:.45fr 1.55fr;gap:14px}
+.review-grid label{display:grid;gap:7px;color:#cce0ed;font-size:.83rem}
+textarea{width:100%;resize:vertical;border:1px solid var(--line);background:#0b1c29;color:var(--text);border-radius:10px;padding:10px}
+@media(max-width:1050px){.research-grid{grid-template-columns:1fr}.provenance-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.provenance-grid,.review-grid{grid-template-columns:1fr}.integration-list>div{grid-template-columns:1fr}.compare-table th,.compare-table td{font-size:.7rem;padding:8px}}
