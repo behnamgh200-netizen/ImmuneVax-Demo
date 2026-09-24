@@ -50,3 +50,18 @@ Open `live-demo.html`.
 A good sentence to use is:
 
 > “The geometry here is computed live. The immune-interaction layer is intentionally simplified so I can demonstrate the architecture and uncertainty handling without presenting a toy model as biological truth.”
+
+
+## Updated live APC interpretation
+
+The live demo now separates three layers clearly:
+
+1. **Real local parsing** — protein ATOM coordinates from a PDB file are read in the browser. Solvent/ligand HETATM records are excluded from the protein analysis.
+2. **Real geometric descriptors** — atom count, chain-aware residue count, chains, surface proxy, compactness, shape spread, and exposed 3D patch count are recalculated from the uploaded structure.
+3. **Illustrative immune layer** — an APC-like recognition index and recognition band are calculated from those geometric descriptors using a transparent educational heuristic.
+
+Recommended wording in an interview:
+
+> “The structure parsing and geometric descriptors are computed live from the uploaded PDB. The APC recognition percentage is intentionally a simplified demo index, not a biological probability. My next development step is to replace this heuristic with validated immunological models and evidence-backed predictors while keeping the same traceable interface.”
+
+Do not call the recognition index a probability of vaccine success or a validated antigenicity score.
