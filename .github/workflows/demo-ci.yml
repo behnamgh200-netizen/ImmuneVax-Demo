@@ -18,12 +18,16 @@ jobs:
         run: |
           node --check app.js
           node --check live-demo.js
+          node --check research-dashboard.js
 
       - name: Validate live demo assets
         run: |
           test -f live-demo.html
           test -f live-demo.css
           test -f live-demo.js
+          test -f research-dashboard.html
+          test -f research-dashboard.css
+          test -f research-dashboard.js
           grep -q 'immuneRecognitionValue' live-demo.html
           grep -q 'computeImmuneRecognition' live-demo.js
           grep -q 'excludedHetatm' live-demo.js
@@ -35,4 +39,4 @@ jobs:
 
       - name: Enforce local-only live demo
         run: |
-          ! grep -E 'fetch\(|XMLHttpRequest|WebSocket|EventSource' live-demo.js
+          ! grep -E 'fetch\(|XMLHttpRequest|WebSocket|EventSource' live-demo.js research-dashboard.js
