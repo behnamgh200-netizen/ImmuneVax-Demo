@@ -20,6 +20,10 @@ https://behnamgh200-netizen.github.io/ImmuneVax-Demo/
 - visualizes a simple surface-exposure proxy;
 - runs a transparent, educational APC-interaction heuristic;
 - shows an APC-like recognition index, recognition band, and demo-model confidence;
+- records provenance such as source type, structure name, model version, scenario, and record ID;
+- can save two local analysis snapshots and compare them side by side;
+- includes a human scientific review gate with reviewer notes;
+- exports a structured JSON demo record for portability and auditability;
 - generates an interview-ready report with explicit limitations.
 
 ## Scientific boundary
