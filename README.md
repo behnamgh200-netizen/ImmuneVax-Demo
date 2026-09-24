@@ -15,15 +15,18 @@ https://behnamgh200-netizen.github.io/ImmuneVax-Demo/
 - renders a synthetic 3D protein coordinate set;
 - accepts a local PDB file in the browser without uploading it;
 - computes deterministic geometric descriptors from the coordinates;
+- analyzes protein ATOM records while excluding solvent/ligand HETATM records;
+- reports chain-aware protein residue counts;
 - visualizes a simple surface-exposure proxy;
 - runs a transparent, educational APC-interaction heuristic;
+- shows an APC-like recognition index, recognition band, and demo-model confidence;
 - generates an interview-ready report with explicit limitations.
 
 ## Scientific boundary
 
 The geometric calculations are real and local.
 
-The immune-interaction score, presentation/recognition timeline, and response interpretation are deliberately simplified educational heuristics. They are **not** molecular docking, epitope prediction, clinical efficacy estimates, or vaccine recommendations.
+The immune-interaction score, APC-like recognition index, presentation/recognition timeline, and response interpretation are deliberately simplified educational heuristics. The displayed recognition percentage is **not a biological probability**. These outputs are **not** molecular docking, antigenicity prediction, epitope prediction, clinical efficacy estimates, or vaccine recommendations.
 
 ## Separation from the private project
 
