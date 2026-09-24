@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ImmuneVax integration and research-run dashboard demo.">
+  <title>ImmuneVax — Research Dashboard</title>
+  <link rel="stylesheet" href="./research-dashboard.css">
+</head>
+<body>
+  <nav class="topbar">
+    <a class="brand" href="./index.html"><span class="mark">IV</span><span>ImmuneVax</span></a>
+    <div class="nav-actions">
+      <a class="button ghost" href="./live-demo.html">Live structure demo</a>
+      <a class="button ghost" href="./index.html">Overview</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Research dashboard</p>
+        <h1>Integration-ready scientific records without exposing the private research core.</h1>
+        <p class="lede">Use this page to demonstrate how ImmuneVax can collect run metadata, imported external-tool results, evidence summaries, uncertainty, and human review in one portable record.</p>
+      </div>
+      <div class="boundary">
+        <strong>Public-demo boundary</strong>
+        <span>No autonomous biological design</span>
+        <span>No live model execution</span>
+        <span>No real vaccine recommendation</span>
+        <span>Imported result metadata only</span>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">1 · Run registry</p><h2>Local analysis history</h2></div>
+          <button id="clearHistory" class="small-button" type="button">Clear history</button>
+        </div>
+        <p class="note">Records are stored only in this browser using local storage.</p>
+        <div id="historyList" class="history-list"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">2 · Adapter imports</p><h2>External result metadata</h2></div>
+          <span class="status">JSON imports</span>
+        </div>
+        <div class="adapter-grid">
+          <label class="adapter-card" for="structureResult">
+            <input id="structureResult" type="file" accept=".json,application/json">
+            <strong>Structure-model result</strong>
+            <span>Import confidence/model metadata</span>
+            <em id="structureStatus">not loaded</em>
+          </label>
+          <label class="adapter-card" for="stabilityResult">
+            <input id="stabilityResult" type="file" accept=".json,application/json">
+            <strong>Stability-model result</strong>
+            <span>Import score/version metadata</span>
+            <em id="stabilityStatus">not loaded</em>
+          </label>
+          <label class="adapter-card" for="dockingResult">
+            <input id="dockingResult" type="file" accept=".json,application/json">
+            <strong>Docking result</strong>
+            <span>Import precomputed score/method metadata</span>
+            <em id="dockingStatus">not loaded</em>
+          </label>
+          <label class="adapter-card" for="evidenceResult">
+            <input id="evidenceResult" type="file" accept=".json,application/json">
+            <strong>Evidence summary</strong>
+            <span>Import source counts and provenance</span>
+            <em id="evidenceStatus">not loaded</em>
+          </label>
+        </div>
+        <div id="adapterSummary" class="summary-box">No adapter result metadata imported.</div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">3 · Integration map</p><h2>Private-backend roadmap</h2></div>
+          <span class="status safe">Modular adapters</span>
+        </div>
+        <div class="integration-list">
+          <div><strong>IEDB</strong><span>curated immune evidence</span><em>private adapter</em></div>
+          <div><strong>ImmPort</strong><span>study / assay evidence</span><em>private adapter</em></div>
+          <div><strong>UniProt / PDB / NCBI</strong><span>sequence, annotation, structure metadata</span><em>private adapter</em></div>
+          <div><strong>AlphaFold</strong><span>structure prediction metadata</span><em>private adapter</em></div>
+          <div><strong>FoldX</strong><span>stability-result metadata</span><em>private adapter</em></div>
+          <div><strong>PhysiCell</strong><span>future cell-simulation output</span><em>private adapter</em></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">4 · Synthetic simulation preview</p><h2>Scenario output</h2></div>
+          <span class="status warning">Illustrative only</span>
+        </div>
+        <div class="scenario-buttons">
+          <button class="tab active" data-scenario="balanced" type="button">Balanced</button>
+          <button class="tab" data-scenario="uncertain" type="button">Higher uncertainty</button>
+          <button class="tab" data-scenario="weak" type="button">Weak evidence</button>
+        </div>
+        <canvas id="scenarioCanvas" width="900" height="330" aria-label="Synthetic scenario chart"></canvas>
+        <p class="note">This chart uses fixed synthetic signals to show how a future simulation output would be visualized. It is not generated from a biological sequence.</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">5 · Scientific record</p><h2>Provenance, uncertainty, and review</h2></div>
+        <span id="reviewBadge" class="status warning">Pending</span>
+      </div>
+      <div class="record-grid">
+        <label>Record label<input id="recordLabel" value="Interview demonstration"></label>
+        <label>Confidence note<input id="confidenceNote" value="Mixed: local geometry + imported metadata + synthetic simulation"></label>
+        <label>Review state
+          <select id="reviewState">
+            <option>Pending</option>
+            <option>Reviewed</option>
+            <option>Needs revision</option>
+          </select>
+        </label>
+        <label>Reviewer note<textarea id="reviewNote" rows="4" placeholder="Add scientific limitations or next steps."></textarea></label>
+      </div>
+      <div class="actions">
+        <button id="saveRecord" class="button primary" type="button">Save record to browser</button>
+        <button id="exportRecord" class="button ghost" type="button">Export record JSON</button>
+      </div>
+      <pre id="recordPreview"></pre>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./research-dashboard.js"></script>
+</body>
+</html>
