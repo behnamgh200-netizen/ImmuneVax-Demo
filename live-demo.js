@@ -200,9 +200,10 @@ tabs.forEach(tab=>tab.addEventListener("click",()=>{
 document.querySelector("#syntheticSelect").addEventListener("change",e=>{
   atoms=syntheticStructures[e.target.value];
   structureName=e.target.options[e.target.selectedIndex].text;
-  latestAnalysis=analyze(atoms); surfaceMask=latestAnalysis.surfaceMask;
-  updateMiniProtein();
+  resetViewForNewStructure();
   document.querySelector("#inputStatus").textContent="Synthetic example loaded";
+  runAnalysis();
+  showToast("Synthetic structure analyzed");
 });
 
 document.querySelector("#pdbFile").addEventListener("change", async e=>{
@@ -211,10 +212,11 @@ document.querySelector("#pdbFile").addEventListener("change", async e=>{
   try{
     atoms=parsePDB(await file.text());
     structureName=file.name;
-    latestAnalysis=analyze(atoms); surfaceMask=latestAnalysis.surfaceMask;
-    updateMiniProtein();
-    document.querySelector("#uploadMessage").textContent=`Loaded ${atoms.length} coordinate records locally from ${file.name}.`;
-    document.querySelector("#inputStatus").textContent="Local PDB loaded";
+    resetViewForNewStructure();
+    document.querySelector("#uploadMessage").textContent=`Loaded ${atoms.length} coordinate records locally from ${file.name}. Analysis updated automatically.`;
+    document.querySelector("#inputStatus").textContent="Local PDB loaded · analyzed";
+    runAnalysis();
+    showToast(`${file.name} analyzed locally`);
   }catch(error){
     document.querySelector("#uploadMessage").textContent=error.message;
   }
@@ -319,7 +321,20 @@ function updateMiniProtein(){
   document.querySelector("#proteinLabel").textContent=structureName;
 }
 
-document.querySelector("#runAnalysis").addEventListener("click",runAnalysis);
+function resetViewForNewStructure(){
+  rotation={x:-0.32,y:0.58};
+  zoom=1;
+}
+
+document.querySelector("#runAnalysis").addEventListener("click",()=>{
+  runAnalysis();
+  showToast("Analysis refreshed");
+});
+
+document.querySelector("#scenarioSelect").addEventListener("change",()=>{
+  runAnalysis();
+  showToast("Scenario updated");
+});
 document.querySelector("#copyReport").addEventListener("click",async()=>{
   const text=document.querySelector("#reportOutput").textContent;
   try{await navigator.clipboard.writeText(text);showToast("Report copied");}
