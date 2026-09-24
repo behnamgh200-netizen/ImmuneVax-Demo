@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ImmuneVax academic interview demo — a synthetic, non-operational research software concept for evidence-traceable vaccine analysis.">
+  <title>ImmuneVax — Academic Research Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <nav class="topbar" aria-label="Primary navigation">
+    <a class="brand" href="#top" aria-label="ImmuneVax home">
+      <span class="brand-mark">IV</span>
+      <span>ImmuneVax</span>
+    </a>
+    <div class="nav-links">
+      <a href="#workflow">Workflow</a>
+      <a href="#workspace">Workspace</a>
+      <a href="#simulation">Simulation</a>
+      <a href="#architecture">Architecture</a>
+    </div>
+    <button id="tourButton" class="button compact primary" type="button">Start guided tour</button>
+  </nav>
+
+  <header id="top" class="hero">
+    <div class="hero-copy">
+      <div class="badge">Academic interview demo · synthetic data only</div>
+      <h1>ImmuneVax</h1>
+      <p class="hero-kicker">A modular research software concept for evidence-traceable subunit-vaccine analysis, uncertainty-aware comparison, immune-simulation orchestration, and mandatory human scientific review.</p>
+      <div class="hero-actions">
+        <button id="heroTourButton" class="button primary" type="button">Walk through the concept</button>
+        <a href="#workspace" class="button">Open demo workspace</a>\n        <a href="./live-demo.html" class="button live-button">Launch live scientific micro-demo</a>
+      </div>
+      <div class="hero-meta" aria-label="Demo status">
+        <span><i class="dot good"></i> Private research core separated</span>
+        <span><i class="dot good"></i> No live biological design</span>
+        <span><i class="dot good"></i> No external API calls</span>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-label="ImmuneVax architecture preview">
+      <div class="orbit orbit-a"></div>
+      <div class="orbit orbit-b"></div>
+      <div class="core-node">
+        <strong>ImmuneVax Core</strong>
+        <span>Evidence · Uncertainty · Review</span>
+      </div>
+      <div class="satellite s1">Scientific<br>sources</div>
+      <div class="satellite s2">Prediction<br>adapters</div>
+      <div class="satellite s3">Simulation<br>engines</div>
+      <div class="satellite s4">Human<br>review</div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="notice glass" aria-label="Demo boundary">
+      <div class="notice-icon">!</div>
+      <div>
+        <strong>Demo boundary</strong>
+        <p>This branch is intentionally non-operational. It uses synthetic records and pre-scripted interactions to demonstrate software architecture and research workflow. It does not query IEDB, ImmPort, AlphaFold, FoldX, PhysiCell, or any other live scientific service, and it does not produce a real vaccine recommendation.</p>
+      </div>
+    </section>
+
+    <section id="overview" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Research concept</p>
+          <h2>One workspace, multiple evidence layers</h2>
+        </div>
+        <p>ImmuneVax is designed as an orchestration and scientific-accountability layer: scientific records enter with provenance, external tools remain isolated behind adapters, uncertainty is explicit, and a human reviewer remains in control.</p>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card glass">
+          <span class="stat-number">4</span>
+          <strong>Evidence layers</strong>
+          <p>Curated source, model output, simulation output, human decision.</p>
+        </article>
+        <article class="stat-card glass">
+          <span class="stat-number">0</span>
+          <strong>Live integrations in demo</strong>
+          <p>The professor-facing branch never contacts scientific services.</p>
+        </article>
+        <article class="stat-card glass">
+          <span class="stat-number">100%</span>
+          <strong>Synthetic presentation data</strong>
+          <p>No unpublished sequence, private algorithm, or internal dataset is exposed.</p>
+        </article>
+        <article class="stat-card glass">
+          <span class="stat-number">1</span>
+          <strong>Required final gate</strong>
+          <p>Human scientific review before a result can be accepted.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="workflow" class="section tour-stop" data-tour-title="Research workflow" data-tour-text="This is the high-level pipeline I would explain first in an interview: evidence enters, specialized tools stay behind adapters, uncertainty is preserved, and a scientist reviews the result.">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Research workflow</p>
+          <h2>From scientific evidence to a reviewable decision</h2>
+        </div>
+        <p>The demo emphasizes the architecture and accountability of the workflow rather than reproducing the private scientific implementation.</p>
+      </div>
+
+      <div class="workflow-line">
+        <article class="workflow-card active-stage">
+          <span>01</span>
+          <h3>Scientific inputs</h3>
+          <p>Versioned source metadata, literature references, and curated immune evidence.</p>
+          <small>Planned: IEDB · ImmPort · UniProt · PDB · NCBI</small>
+        </article>
+        <article class="workflow-card">
+          <span>02</span>
+          <h3>Prediction adapters</h3>
+          <p>Isolated interfaces for MHC, structural, and future AI-assisted prediction services.</p>
+          <small>Planned: AlphaFold · FoldX · specialized predictors</small>
+        </article>
+        <article class="workflow-card">
+          <span>03</span>
+          <h3>Evidence synthesis</h3>
+          <p>Comparable candidate records with source-level provenance and model context.</p>
+          <small>No hidden aggregation without traceability</small>
+        </article>
+        <article class="workflow-card">
+          <span>04</span>
+          <h3>Immune simulation</h3>
+          <p>A simplified internal model can later delegate to an advanced cellular engine.</p>
+          <small>Planned external adapter: PhysiCell</small>
+        </article>
+        <article class="workflow-card">
+          <span>05</span>
+          <h3>Uncertainty</h3>
+          <p>Missing evidence, model disagreement, scope limits, and confidence are explicit.</p>
+          <small>Uncertainty is part of the record</small>
+        </article>
+        <article class="workflow-card">
+          <span>06</span>
+          <h3>Human review</h3>
+          <p>A researcher must accept, revise, or reject the interpretation with rationale.</p>
+          <small>Automatic final approval: disabled</small>
+        </article>
+      </div>
+    </section>
+
+    <section id="workspace" class="section tour-stop" data-tour-title="Candidate workspace" data-tour-text="These are synthetic candidates. The important design point is that one score is never shown alone: evidence completeness, agreement, uncertainty, provenance, and review state stay visible together.">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Interactive synthetic workspace</p>
+          <h2>Compare candidates without hiding uncertainty</h2>
+        </div>
+        <p>Click a candidate to inspect its evidence trail. Values below are invented solely for the interview demo.</p>
+      </div>
+
+      <div class="workspace-shell glass">
+        <div class="workspace-toolbar">
+          <div>
+            <span class="workspace-label">Project</span>
+            <strong>Synthetic Surface-Antigen Study</strong>
+          </div>
+          <div class="controls" role="group" aria-label="Candidate filters">
+            <button class="chip active" data-filter="all" type="button">All</button>
+            <button class="chip" data-filter="review" type="button">Needs review</button>
+            <button class="chip" data-filter="strong" type="button">Higher evidence</button>
+          </div>
+        </div>
+
+        <div class="candidate-layout">
+          <div id="candidateCards" class="candidate-grid" aria-live="polite"></div>
+          <aside id="candidateInspector" class="inspector">
+            <div class="inspector-empty">
+              <span class="inspector-icon">↗</span>
+              <h3>Select a candidate</h3>
+              <p>Inspect provenance, uncertainty notes, and reviewer state.</p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="simulation" class="section tour-stop" data-tour-title="Simulation preview" data-tour-text="This visualization is deliberately illustrative. The long-term architecture lets the same interface work with a simple internal simulator or an external engine such as PhysiCell while keeping the engine replaceable.">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Illustrative simulation layer</p>
+          <h2>Show system behavior without pretending it is a human body</h2>
+        </div>
+        <p>The chart demonstrates the future presentation layer for time-dependent cellular or cytokine model outputs. It is not a biological prediction.</p>
+      </div>
+
+      <div class="simulation-grid">
+        <div class="panel glass">
+          <div class="panel-head">
+            <div>
+              <span class="workspace-label">Synthetic scenario</span>
+              <h3>Immune-response trajectory</h3>
+            </div>
+            <div class="scenario-switch" role="group" aria-label="Synthetic scenario">
+              <button class="scenario active" data-scenario="balanced" type="button">Balanced</button>
+              <button class="scenario" data-scenario="uncertain" type="button">Higher uncertainty</button>
+              <button class="scenario" data-scenario="weak" type="button">Weak evidence</button>
+            </div>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="y-labels"><span>High</span><span>Relative synthetic signal</span><span>Low</span></div>
+            <div id="simulationChart" class="chart" aria-label="Synthetic simulation chart"></div>
+          </div>
+          <div class="chart-legend">
+            <span><i class="legend-dot l1"></i> APC-like signal</span>
+            <span><i class="legend-dot l2"></i> T-cell-like signal</span>
+            <span><i class="legend-dot l3"></i> Antibody-like signal</span>
+          </div>
+        </div>
+
+        <aside class="panel glass">
+          <span class="workspace-label">Interpretation guardrails</span>
+          <h3>What this panel would report</h3>
+          <ul class="check-list">
+            <li>Simulation engine and version</li>
+            <li>Scenario assumptions and input provenance</li>
+            <li>Uncertainty interval or model spread</li>
+            <li>Known model limitations</li>
+            <li>Difference between simulated and experimentally observed data</li>
+          </ul>
+          <div class="guardrail">
+            <strong>Important</strong>
+            <p>A simulated trajectory is evidence for discussion, not proof of clinical efficacy.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="ai-interface" class="section tour-stop" data-tour-title="AI brain interface" data-tour-text="The future AI layer is a controller and explainer, not an unrestricted biological designer. In the demo it is completely local and only returns pre-written examples.">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Future AI brain interface</p>
+          <h2>Talk to the platform like a research assistant</h2>
+        </div>
+        <p>This mock interface illustrates how a future AI controller could query project records, compare evidence, and explain uncertainty without bypassing scientific review.</p>
+      </div>
+
+      <div class="assistant-shell glass">
+        <div class="assistant-sidebar">
+          <span class="assistant-avatar">AI</span>
+          <div>
+            <strong>ImmuneVax Research Assistant</strong>
+            <p>Demo mode · no external model connected</p>
+          </div>
+        </div>
+        <div class="assistant-main">
+          <div id="assistantConversation" class="conversation" aria-live="polite">
+            <div class="message system-message">
+              <span>System</span>
+              <p>I can explain synthetic project records and architecture. I cannot run live scientific tools in this demo.</p>
+            </div>
+          </div>
+          <div class="prompt-chips">
+            <button class="prompt-chip" data-prompt="compare" type="button">Compare the three candidates</button>
+            <button class="prompt-chip" data-prompt="uncertainty" type="button">Where is uncertainty highest?</button>
+            <button class="prompt-chip" data-prompt="architecture" type="button">How would AlphaFold fit in?</button>
+            <button class="prompt-chip" data-prompt="review" type="button">Why is human review required?</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Evidence traceability</p>
+          <h2>Every conclusion should be explainable</h2>
+        </div>
+        <p>ImmuneVax separates source evidence, derived estimates, simulated outputs, and human judgments so they can be independently reviewed.</p>
+      </div>
+
+      <div class="evidence-layout">
+        <div class="panel glass">
+          <span class="workspace-label">Evidence ledger</span>
+          <h3>Synthetic record chain</h3>
+          <div class="ledger">
+            <div><span class="ledger-type source">SOURCE</span><b>EV-0142</b><p>Curated public immune record metadata</p><small>provenance attached</small></div>
+            <div><span class="ledger-type model">MODEL</span><b>MD-0031</b><p>Versioned adapter output</p><small>method + model version attached</small></div>
+            <div><span class="ledger-type sim">SIM</span><b>SM-0008</b><p>Synthetic scenario output</p><small>assumptions attached</small></div>
+            <div><span class="ledger-type review">REVIEW</span><b>RV-0011</b><p>Human review state: pending</p><small>review rationale required</small></div>
+          </div>
+        </div>
+
+        <div class="panel glass">
+          <span class="workspace-label">Uncertainty snapshot</span>
+          <h3>Not just a single confidence score</h3>
+          <div class="uncertainty-row"><span>Evidence completeness</span><div class="bar"><i style="width:74%"></i></div><b>0.74</b></div>
+          <div class="uncertainty-row"><span>Cross-source agreement</span><div class="bar"><i style="width:68%"></i></div><b>0.68</b></div>
+          <div class="uncertainty-row"><span>Model confidence</span><div class="bar"><i style="width:61%"></i></div><b>0.61</b></div>
+          <div class="uncertainty-row"><span>Experimental validation</span><div class="bar"><i style="width:28%"></i></div><b>0.28</b></div>
+          <p class="small muted">Synthetic values. The intended production design stores the origin and meaning of each uncertainty measure rather than presenting one opaque probability.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture" class="section tour-stop" data-tour-title="Portable architecture" data-tour-text="The core stays independent from external databases, prediction engines, storage, the web UI, and the future AI brain. That separation is what makes the platform portable and keeps integrations replaceable.">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Architecture</p>
+          <h2>Portable, modular, and replaceable by design</h2>
+        </div>
+        <p>The same core can run locally, inside Docker, behind an API, or under an AI controller without coupling scientific records to any one vendor or model.</p>
+      </div>
+
+      <div class="architecture-map glass">
+        <div class="arch-layer">
+          <div class="arch-title">Scientific data sources</div>
+          <div class="arch-items">
+            <span>IEDB</span><span>ImmPort</span><span>UniProt</span><span>PDB</span><span>NCBI</span>
+          </div>
+        </div>
+        <div class="arch-connector">↓ adapters ↓</div>
+        <div class="arch-layer">
+          <div class="arch-title">Prediction & simulation adapters</div>
+          <div class="arch-items">
+            <span>MHC predictors</span><span>AlphaFold</span><span>FoldX</span><span>PhysiCell</span>
+          </div>
+        </div>
+        <div class="arch-connector">↓ typed records ↓</div>
+        <div class="arch-layer core-layer">
+          <div class="arch-title">ImmuneVax private research core</div>
+          <div class="arch-items">
+            <span>Scientific records</span><span>Evidence graph</span><span>Uncertainty</span><span>Audit</span><span>Human review</span>
+          </div>
+        </div>
+        <div class="arch-connector">↓ controlled interfaces ↓</div>
+        <div class="arch-bottom">
+          <div><strong>Internal persistence</strong><small>versioned records + audit trail</small></div>
+          <div><strong>REST/API layer</strong><small>future service boundary</small></div>
+          <div><strong>AI brain</strong><small>query + orchestration interface</small></div>
+          <div><strong>Web application</strong><small>researcher-facing presentation</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap" class="section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Development roadmap</p>
+          <h2>What the private project is building toward</h2>
+        </div>
+        <p>The public-facing demo intentionally communicates direction without exposing unpublished implementation details.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="done"><b>Foundation</b><span>Configuration, safe defaults, scientific record contracts</span><em>built</em></div>
+        <div class="done"><b>Evidence & storage</b><span>Provenance, persistence, review workflow, audit trail</span><em>built</em></div>
+        <div class="current"><b>Integration layer</b><span>Replaceable connectors to scientific databases and prediction tools</span><em>next</em></div>
+        <div><b>Simulation</b><span>Simplified immune model, later compatible with advanced cellular engines</span><em>planned</em></div>
+        <div><b>Decision support</b><span>Candidate comparison with uncertainty-aware explanations</span><em>planned</em></div>
+        <div><b>Deployment</b><span>API, Docker, AI controller, and researcher-facing application</span><em>planned</em></div>
+      </div>
+    </section>
+
+    <section class="section interview-card glass">
+      <div>
+        <p class="eyebrow">Interview summary</p>
+        <h2>The idea in 30 seconds</h2>
+        <p>“ImmuneVax is a modular computational research platform I am developing to connect scientific immune data, prediction tools, future cell-level simulation, explicit uncertainty, and human review in one traceable workflow. The demo you are seeing is intentionally synthetic; the private repository contains the research infrastructure and remains separate from the application-facing demonstration.”</p>
+      </div>
+      <button id="copyPitch" class="button" type="button">Copy interview pitch</button>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>ImmuneVax</strong>
+      <span>Academic research software concept demo</span>
+    </div>
+    <span>Non-clinical · non-diagnostic · synthetic data only · live micro-demo available</span>
+  </footer>
+
+  <div id="tourOverlay" class="tour-overlay" hidden>
+    <div class="tour-dialog" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+      <div class="tour-progress"><span id="tourCounter">1 / 5</span><button id="tourClose" type="button" aria-label="Close guided tour">×</button></div>
+      <p class="eyebrow">Guided interview tour</p>
+      <h3 id="tourTitle"></h3>
+      <p id="tourText"></p>
+      <div class="tour-actions">
+        <button id="tourPrevious" class="button compact" type="button">Previous</button>
+        <button id="tourNext" class="button compact primary" type="button">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
