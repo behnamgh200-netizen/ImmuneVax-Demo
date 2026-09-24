@@ -90,3 +90,14 @@ A useful interview sequence is:
 Recommended phrase:
 
 > “The point of this demo is not that a simple heuristic solves immunology. The point is that every input, model version, result, uncertainty boundary, comparison, and human review can be carried through one traceable workflow.”
+
+
+## Research dashboard walkthrough
+
+After the live PDB demonstration, open `research-dashboard.html`.
+
+Use it to explain that the final system is designed around **adapters and traceable records**, not a single opaque score. The public page can import precomputed result metadata, show where external scientific databases and models fit, store local run history, attach human review, and export a portable JSON record.
+
+A good interview line is:
+
+> “The public demo intentionally stops at safe, inspectable interfaces. The private research architecture is designed so validated database connectors and scientific models can later plug into the same provenance, uncertainty, and review workflow.”
