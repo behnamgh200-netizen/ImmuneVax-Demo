@@ -42,3 +42,17 @@ Do not copy private research files into this repository.
 
 _Last updated automatically from the presentation-only demo branch._
 
+
+
+## Research dashboard
+
+The public demo now also includes `research-dashboard.html`.
+
+It demonstrates:
+- local run history stored in the browser;
+- imported metadata from external-tool result JSON files;
+- an integration map for IEDB, ImmPort, UniProt/PDB/NCBI, AlphaFold, FoldX, and PhysiCell;
+- fixed synthetic simulation scenarios for presentation;
+- provenance, uncertainty notes, human review, and JSON export.
+
+The dashboard deliberately does **not** execute live biological prediction, autonomous epitope design, docking, or vaccine optimization. Those operational capabilities remain outside the public presentation layer.
