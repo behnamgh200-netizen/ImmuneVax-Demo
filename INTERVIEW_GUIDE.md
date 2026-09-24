@@ -65,3 +65,28 @@ Recommended wording in an interview:
 > “The structure parsing and geometric descriptors are computed live from the uploaded PDB. The APC recognition percentage is intentionally a simplified demo index, not a biological probability. My next development step is to replace this heuristic with validated immunological models and evidence-backed predictors while keeping the same traceable interface.”
 
 Do not call the recognition index a probability of vaccine success or a validated antigenicity score.
+
+
+## Stronger interview flow
+
+The live demo now supports a fuller research-software story without exposing the private implementation:
+
+- **Traceability:** show the generated record ID, structure source, analysis version, scenario, and adapter boundary.
+- **Compare runs:** save the current structure as A, load a second PDB manually, save it as B, and compare geometry plus the educational APC recognition index side by side.
+- **Human review:** set the review state to Pending, Reviewed, or Needs revision and add a local reviewer note.
+- **Export:** download a JSON demo record containing structure metadata, geometric results, the clearly labeled heuristic output, review state, and limitations.
+
+A useful interview sequence is:
+
+1. Upload a real small PDB manually.
+2. Show the live geometry and APC-like demo index.
+3. Save it as **A**.
+4. Upload another structure and save it as **B**.
+5. Open the side-by-side comparison.
+6. Show the provenance record and explain that external scientific sources will enter through adapters.
+7. Add a human review note.
+8. Export the JSON record and explain that the private project is designed around traceable scientific records rather than opaque scores.
+
+Recommended phrase:
+
+> “The point of this demo is not that a simple heuristic solves immunology. The point is that every input, model version, result, uncertainty boundary, comparison, and human review can be carried through one traceable workflow.”
