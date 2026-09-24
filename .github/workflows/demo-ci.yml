@@ -1,0 +1,34 @@
+name: Demo CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check live-demo.js
+
+      - name: Validate live demo assets
+        run: |
+          test -f live-demo.html
+          test -f live-demo.css
+          test -f live-demo.js
+          grep -q 'immuneRecognitionValue' live-demo.html
+          grep -q 'computeImmuneRecognition' live-demo.js
+          grep -q 'excludedHetatm' live-demo.js
+          grep -q 'not a biological probability' README.md
+
+      - name: Enforce local-only live demo
+        run: |
+          ! grep -E 'fetch\(|XMLHttpRequest|WebSocket|EventSource' live-demo.js
