@@ -77,3 +77,23 @@ pre{white-space:pre-wrap;margin:0;padding:18px;border:1px solid #18384a;border-r
 .toast.show{opacity:1;transform:none}
 @media(max-width:1050px){.lab-grid,.interaction-grid,.hero{grid-template-columns:1fr}.metric-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:640px){.nav-actions .mode{display:none}.metric-grid{grid-template-columns:repeat(2,1fr)}.panel-head{flex-direction:column}.score-box{grid-template-columns:1fr}.interaction-stage{grid-template-columns:1fr}.interaction-arrow{transform:rotate(90deg);margin:8px}.viewer-actions{width:100%}#proteinCanvas{height:390px}}
+
+.immune-summary-card{margin-top:18px;padding:18px;border:1px solid #254b62;border-radius:16px;background:linear-gradient(180deg,#0b1d2a,#091722)}
+.immune-summary-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;margin-bottom:14px}
+.immune-summary-head h3{margin:.2em 0 0;font-size:1.08rem}
+.immune-badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:.72rem;font-weight:700;white-space:nowrap;border:1px solid transparent}
+.immune-badge.neutral{background:#163043;color:#b8d0df;border-color:#294b61}
+.immune-badge.weak{background:#3a2a18;color:#f2c77d;border-color:#6b4c25}
+.immune-badge.moderate{background:#16324a;color:#8ed7ff;border-color:#285e7d}
+.immune-badge.strong{background:#14372d;color:#8ce7c4;border-color:#286553}
+.immune-summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.immune-metric{padding:12px;border:1px solid #1b394b;border-radius:12px;background:#081722}
+.immune-metric span{display:block;color:#7f9caf;font-size:.69rem;margin-bottom:5px}
+.immune-metric strong{font-size:1rem;color:#e7f4fc}
+.immune-progress-block{margin-top:14px}
+.immune-progress-label{display:flex;justify-content:space-between;gap:10px;color:#9eb5c5;font-size:.75rem;margin-bottom:7px}
+.immune-progress-track{height:9px;border-radius:999px;background:#102938;overflow:hidden}
+.immune-progress-bar{height:100%;width:0;background:linear-gradient(90deg,#258fb9,#7d68e9,#66e0b9);transition:width .35s ease}
+.immune-summary-text{margin:13px 0 0;color:#b8ccd8;font-size:.82rem}
+.immune-boundary{margin:10px 0 0;padding-top:10px;border-top:1px solid #1c3646;color:#7893a5;font-size:.72rem}
+@media(max-width:640px){.immune-summary-grid{grid-template-columns:1fr}.immune-summary-head{flex-direction:column}}
