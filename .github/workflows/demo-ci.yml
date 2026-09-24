@@ -27,6 +27,10 @@ jobs:
           grep -q 'immuneRecognitionValue' live-demo.html
           grep -q 'computeImmuneRecognition' live-demo.js
           grep -q 'excludedHetatm' live-demo.js
+          grep -q 'provenanceGrid' live-demo.html
+          grep -q 'saveSnapshotA' live-demo.js
+          grep -q 'buildDemoRecord' live-demo.js
+          grep -q 'reviewStatus' live-demo.html
           grep -q 'not a biological probability' README.md
 
       - name: Enforce local-only live demo
