@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ImmuneVax live scientific micro-demo using synthetic or locally uploaded PDB coordinates.">
+  <title>ImmuneVax — Live Scientific Micro-Demo</title>
+  <link rel="stylesheet" href="./live-demo.css">
+</head>
+<body>
+  <nav class="topbar">
+    <a class="brand" href="./index.html"><span class="mark">IV</span><span>ImmuneVax</span></a>
+    <div class="nav-actions">
+      <span class="mode">Local-only demo</span>
+      <a class="button ghost" href="./index.html">Back to overview</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Live scientific micro-demo</p>
+        <h1>Inspect a small protein structure and simulate an immune-interaction scenario.</h1>
+        <p class="lede">This page performs real, local geometric calculations on 3D coordinates. The immune-response portion is a transparent educational heuristic, not a molecular docking engine or vaccine predictor.</p>
+      </div>
+      <div class="safety-card">
+        <strong>What is real here</strong>
+        <span>Local PDB parsing</span>
+        <span>3D coordinate rendering</span>
+        <span>Geometric surface proxies</span>
+        <span>Deterministic calculations</span>
+        <strong>What is illustrative</strong>
+        <span>APC engagement heuristic</span>
+        <span>Presentation / recognition timeline</span>
+        <span>Immune response score</span>
+      </div>
+    </section>
+
+    <section class="lab-grid">
+      <div class="panel input-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">1 · Input</p>
+            <h2>Choose a structure</h2>
+          </div>
+          <span id="inputStatus" class="status">Synthetic example loaded</span>
+        </div>
+
+        <div class="source-tabs">
+          <button class="tab active" data-source="synthetic" type="button">Synthetic surface protein</button>
+          <button class="tab" data-source="upload" type="button">Upload local PDB</button>
+        </div>
+
+        <div id="syntheticSource" class="source-pane">
+          <label for="syntheticSelect">Example</label>
+          <select id="syntheticSelect">
+            <option value="compact">S-12 Compact surface protein</option>
+            <option value="open">S-18 Open surface protein</option>
+            <option value="irregular">S-21 Irregular surface protein</option>
+          </select>
+          <p class="note">These structures are synthetic coordinate sets created only for presentation.</p>
+        </div>
+
+        <div id="uploadSource" class="source-pane" hidden>
+          <label class="upload-box" for="pdbFile">
+            <input id="pdbFile" type="file" accept=".pdb,.ent,text/plain">
+            <strong>Choose a local PDB file</strong>
+            <span>The browser reads coordinates locally. Nothing is uploaded.</span>
+          </label>
+          <p id="uploadMessage" class="note">Only ATOM/HETATM coordinates are parsed. No network request is made.</p>
+        </div>
+
+        <div class="controls">
+          <label>Immune scenario
+            <select id="scenarioSelect">
+              <option value="apc">Antigen-presenting cell (APC) encounter</option>
+              <option value="review">Scientific review only</option>
+            </select>
+          </label>
+          <button id="runAnalysis" class="button primary" type="button">Run live analysis</button>
+        </div>
+      </div>
+
+      <div class="panel viewer-panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">2 · Structure</p>
+            <h2>3D coordinate viewer</h2>
+          </div>
+          <div class="viewer-actions">
+            <button id="toggleSurface" class="small-button active" type="button">Surface proxy on</button>
+            <button id="resetView" class="small-button" type="button">Reset view</button>
+          </div>
+        </div>
+        <canvas id="proteinCanvas" width="900" height="560" aria-label="Interactive protein coordinate viewer"></canvas>
+        <div class="viewer-help">Drag to rotate · scroll to zoom · highlighted points = geometric surface proxy</div>
+      </div>
+    </section>
+
+    <section class="panel metrics-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">3 · Live analysis</p>
+          <h2>Calculated structural descriptors</h2>
+        </div>
+        <span class="status safe">Deterministic local calculation</span>
+      </div>
+      <div id="metricGrid" class="metric-grid"></div>
+      <div class="method-note">
+        <strong>Method:</strong> surface exposure is approximated from radial distance to the coordinate centroid; patch count is based on clustering exposed points in 3D space. These are intentionally simple geometric proxies, not solvent-accessibility or docking calculations.
+      </div>
+    </section>
+
+    <section class="interaction-grid">
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">4 · Interaction scenario</p>
+            <h2>APC encounter heuristic</h2>
+          </div>
+          <span class="status warning">Educational model</span>
+        </div>
+        <div class="interaction-stage">
+          <div class="cell apc-cell">
+            <div class="cell-core">APC</div>
+            <span>antigen-presenting cell</span>
+          </div>
+          <div class="interaction-arrow">
+            <span id="interactionSignal">structure features</span>
+            <div class="pulse-line"></div>
+          </div>
+          <div class="cell protein-cell">
+            <div class="mini-protein" id="miniProtein"></div>
+            <span id="proteinLabel">synthetic protein</span>
+          </div>
+        </div>
+
+        <div class="score-box">
+          <div>
+            <span class="score-label">Illustrative engagement index</span>
+            <strong id="engagementScore">—</strong>
+          </div>
+          <div class="confidence">
+            <span>Interpretation confidence</span>
+            <div class="confidence-bar"><i id="confidenceBar"></i></div>
+            <small id="confidenceText">waiting for analysis</small>
+          </div>
+        </div>
+
+        <div id="interactionExplanation" class="explanation">
+          Run the analysis to generate a transparent, rule-based explanation.
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="eyebrow">5 · Response timeline</p>
+            <h2>Illustrative immune-system flow</h2>
+          </div>
+          <span class="status warning">Not a biological prediction</span>
+        </div>
+        <div id="timeline" class="timeline"></div>
+        <p class="note">The sequence is a visualization of the planned software workflow: encounter → processing → presentation → recognition → review. It does not claim to reproduce human physiology.</p>
+      </div>
+    </section>
+
+    <section class="panel report-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">6 · Report</p>
+          <h2>Interview-ready scientific summary</h2>
+        </div>
+        <button id="copyReport" class="button ghost" type="button">Copy report</button>
+      </div>
+      <pre id="reportOutput">Run the analysis to generate a report.</pre>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./live-demo.js"></script>
+</body>
+</html>
