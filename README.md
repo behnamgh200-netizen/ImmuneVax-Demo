@@ -31,3 +31,6 @@ The immune-interaction score, presentation/recognition timeline, and response in
 - `ImmuneVax-Demo` — public presentation repository
 
 Do not copy private research files into this repository.
+
+
+_Last updated automatically from the presentation-only demo branch._
