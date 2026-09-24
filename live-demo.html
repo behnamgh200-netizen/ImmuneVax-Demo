@@ -67,7 +67,7 @@
             <strong>Choose a local PDB file</strong>
             <span>The browser reads coordinates locally. Nothing is uploaded.</span>
           </label>
-          <p id="uploadMessage" class="note">Only ATOM/HETATM coordinates are parsed. No network request is made.</p>
+          <p id="uploadMessage" class="note">Protein ATOM records are analyzed locally. Solvent/ligand HETATM records are excluded from the protein analysis. No network request is made.</p>
         </div>
 
         <div class="controls">
@@ -149,6 +149,52 @@
 
         <div id="interactionExplanation" class="explanation">
           Run the analysis to generate a transparent, rule-based explanation.
+        </div>
+
+        <div class="immune-summary-card">
+          <div class="immune-summary-head">
+            <div>
+              <span class="score-label">Simplified APC interpretation</span>
+              <h3>Immune recognition summary</h3>
+            </div>
+            <span id="immuneOutcomeBadge" class="immune-badge neutral">Awaiting analysis</span>
+          </div>
+
+          <div class="immune-summary-grid">
+            <div class="immune-metric">
+              <span>APC-like recognition index</span>
+              <strong id="immuneRecognitionValue">--%</strong>
+            </div>
+            <div class="immune-metric">
+              <span>Recognition band</span>
+              <strong id="immuneReadinessValue">--</strong>
+            </div>
+            <div class="immune-metric">
+              <span>Interpretation</span>
+              <strong id="immuneInterpretationValue">--</strong>
+            </div>
+            <div class="immune-metric">
+              <span>Demo-model confidence</span>
+              <strong id="immuneConfidenceValue">--%</strong>
+            </div>
+          </div>
+
+          <div class="immune-progress-block">
+            <div class="immune-progress-label">
+              <span>Recognition index</span>
+              <span id="immuneRecognitionProgressText">0%</span>
+            </div>
+            <div class="immune-progress-track">
+              <div id="immuneRecognitionProgressBar" class="immune-progress-bar"></div>
+            </div>
+          </div>
+
+          <p id="immuneSummaryText" class="immune-summary-text">
+            Run analysis to generate a simplified recognition interpretation.
+          </p>
+          <p class="immune-boundary">
+            This percentage is a demo index derived from geometric descriptors. It is not a probability of immune success, antigenicity, vaccine efficacy, or clinical protection.
+          </p>
         </div>
       </div>
 
