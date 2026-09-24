@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ImmuneVax controlled immunoinformatics research-pipeline demo.">
+  <title>ImmuneVax — Research Pipeline Demo</title>
+  <link rel="stylesheet" href="./research-lab.css">
+</head>
+<body>
+  <nav class="topbar">
+    <a class="brand" href="./index.html"><span class="mark">IV</span><span>ImmuneVax</span></a>
+    <div class="nav-actions">
+      <span class="mode">Controlled research demo</span>
+      <a class="button ghost" href="./live-demo.html">Structure demo</a>
+      <a class="button ghost" href="./index.html">Overview</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Integrated research-pipeline demo</p>
+        <h1>Sequence, structure, evidence, model adapters, and a toy immune-response simulation in one traceable workflow.</h1>
+        <p class="lede">This public demo performs local parsing and descriptive analysis, maps imported evidence, reads model-result files, and runs an explicitly illustrative normalized simulation. It does not design vaccines or claim clinical efficacy.</p>
+      </div>
+      <div class="boundary">
+        <strong>Scientific boundary</strong>
+        <span>Real: sequence parsing & descriptive metrics</span>
+        <span>Real: PDB residue extraction</span>
+        <span>Real: AlphaFold-style pLDDT field summary when supplied</span>
+        <span>Real: imported evidence / adapter-result mapping</span>
+        <span>Illustrative: normalized immune-response simulation</span>
+        <span>Not included: autonomous epitope design or vaccine optimization</span>
+      </div>
+    </section>
+
+    <section class="pipeline-strip">
+      <span>Input</span><i>→</i><span>Sequence</span><i>→</i><span>Structure</span><i>→</i><span>Evidence</span><i>→</i><span>Adapters</span><i>→</i><span>Simulation</span><i>→</i><span>Review</span>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">1 · Biological input</p><h2>Load PDB or FASTA</h2></div>
+          <span id="inputBadge" class="status">No file loaded</span>
+        </div>
+        <div class="input-tabs">
+          <button class="tab active" data-mode="pdb" type="button">PDB structure</button>
+          <button class="tab" data-mode="fasta" type="button">FASTA sequence</button>
+        </div>
+        <label id="pdbUploadBox" class="upload-box" for="researchPdb">
+          <input id="researchPdb" type="file" accept=".pdb,.ent,text/plain">
+          <strong>Choose local PDB</strong>
+          <span>Protein ATOM records are parsed locally; HETATM solvent/ligands are excluded.</span>
+        </label>
+        <label id="fastaUploadBox" class="upload-box" for="researchFasta" hidden>
+          <input id="researchFasta" type="file" accept=".fa,.fasta,.faa,text/plain">
+          <strong>Choose local FASTA</strong>
+          <span>Sequence is read locally in the browser.</span>
+        </label>
+        <p id="inputMessage" class="note">Nothing is uploaded to a server.</p>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">2 · Sequence layer</p><h2>Descriptive sequence profile</h2></div>
+          <span class="status safe">Local calculation</span>
+        </div>
+        <div id="sequenceMetrics" class="metric-grid"></div>
+        <div id="sequencePreview" class="sequence-preview">Load a PDB or FASTA file to inspect the extracted sequence.</div>
+        <p class="note">These are descriptive properties only; they are not an epitope or antigenicity prediction.</p>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">3 · Structure / AlphaFold layer</p><h2>Structure-quality summary</h2></div>
+          <span id="structureBadge" class="status">Waiting</span>
+        </div>
+        <div id="structureMetrics" class="metric-grid"></div>
+        <div class="adapter-note">
+          <strong>AlphaFold adapter behavior:</strong>
+          <span>If an AlphaFold-style PDB is uploaded, the B-factor field is summarized as a pLDDT-compatible confidence field. For ordinary experimental PDBs, the same field is reported only as a B-factor summary.</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">4 · Evidence layer</p><h2>Known epitope / HLA evidence import</h2></div>
+          <span class="status">Evidence mapping</span>
+        </div>
+        <label class="upload-box compact" for="evidenceFile">
+          <input id="evidenceFile" type="file" accept=".json,application/json">
+          <strong>Import evidence JSON</strong>
+          <span>Use public or synthetic evidence records. The demo maps evidence; it does not generate new epitopes.</span>
+        </label>
+        <div class="inline-actions">
+          <button id="loadExampleEvidence" class="button ghost" type="button">Load bundled example</button>
+          <button id="clearEvidence" class="small-button" type="button">Clear evidence</button>
+        </div>
+        <div id="evidenceSummary" class="metric-grid"></div>
+        <div id="evidenceTable" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">5 · Model adapters</p><h2>Import external-tool results</h2></div>
+          <span class="status">No live API</span>
+        </div>
+        <div class="adapter-grid">
+          <label class="adapter-card" for="foldxFile">
+            <input id="foldxFile" type="file" accept=".json,application/json">
+            <strong>FoldX result import</strong>
+            <span>JSON with optional ddg / stability fields</span>
+            <em id="foldxStatus">not loaded</em>
+          </label>
+          <label class="adapter-card" for="dockingFile">
+            <input id="dockingFile" type="file" accept=".json,application/json">
+            <strong>Docking-result import</strong>
+            <span>JSON with score / method metadata</span>
+            <em id="dockingStatus">not loaded</em>
+          </label>
+          <div class="adapter-card static">
+            <strong>IEDB / ImmPort</strong>
+            <span>Evidence enters through the evidence-import schema in this public demo.</span>
+            <em>live query reserved for private backend</em>
+          </div>
+          <div class="adapter-card static">
+            <strong>PhysiCell</strong>
+            <span>Future cell-level engine behind the same scenario interface.</span>
+            <em>adapter planned</em>
+          </div>
+        </div>
+        <div id="adapterSummary" class="adapter-summary">No external result files imported.</div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">6 · HLA evidence</p><h2>Allele evidence matrix</h2></div>
+          <span class="status warning">Evidence, not prediction</span>
+        </div>
+        <div id="hlaMatrix" class="hla-matrix">
+          <div class="empty">Import evidence JSON to populate known HLA associations.</div>
+        </div>
+        <p class="note">This panel summarizes imported evidence records. It does not compute peptide–MHC binding.</p>
+      </div>
+    </section>
+
+    <section class="panel simulation-panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">7 · Immune simulation</p><h2>Normalized educational response model</h2></div>
+        <span class="status warning">Illustrative only</span>
+      </div>
+      <div class="simulation-layout">
+        <div class="sim-controls">
+          <label>Antigen persistence
+            <input id="antigenPersistence" type="range" min="20" max="80" value="48">
+            <span id="antigenPersistenceValue">48</span>
+          </label>
+          <label>APC activation
+            <input id="apcActivation" type="range" min="20" max="80" value="52">
+            <span id="apcActivationValue">52</span>
+          </label>
+          <label>Adaptive response coupling
+            <input id="adaptiveCoupling" type="range" min="20" max="80" value="50">
+            <span id="adaptiveCouplingValue">50</span>
+          </label>
+          <button id="runSimulation" class="button primary" type="button">Run normalized simulation</button>
+          <p class="note">Controls are dimensionless demonstration parameters, not biological rate constants.</p>
+        </div>
+        <div>
+          <canvas id="simulationCanvas" width="900" height="360" aria-label="Illustrative normalized immune response chart"></canvas>
+          <div class="legend"><span><i class="a"></i>Antigen signal</span><span><i class="b"></i>APC-like signal</span><span><i class="c"></i>T-like signal</span><span><i class="d"></i>B-like signal</span></div>
+        </div>
+      </div>
+      <div id="simulationSummary" class="simulation-summary"></div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">8 · Provenance</p><h2>Traceable pipeline state</h2></div>
+          <span class="status safe">Versioned</span>
+        </div>
+        <div id="provenanceGrid" class="provenance-grid"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div><p class="eyebrow">9 · Human review</p><h2>Researcher gate</h2></div>
+          <span id="reviewBadge" class="status warning">Pending</span>
+        </div>
+        <label>Review status
+          <select id="reviewStatus">
+            <option>Pending</option>
+            <option>Reviewed</option>
+            <option>Needs revision</option>
+          </select>
+        </label>
+        <label>Reviewer note
+          <textarea id="reviewNote" rows="4" placeholder="Example: Evidence imported; simulation remains illustrative."></textarea>
+        </label>
+        <div class="inline-actions">
+          <button id="saveReview" class="button primary" type="button">Save review</button>
+          <button id="exportPipeline" class="button ghost" type="button">Export pipeline JSON</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel report-panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">10 · Final report</p><h2>Integrated interview summary</h2></div>
+        <button id="copyPipelineReport" class="button ghost" type="button">Copy report</button>
+      </div>
+      <pre id="pipelineReport">Load a structure or sequence to generate the integrated report.</pre>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./research-lab.js"></script>
+</body>
+</html>
