@@ -77,10 +77,45 @@
       </div>
     </section>
 
+    <section class="panel private-run-panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">3 · Private-core result</p>
+          <h2>Load a sanitized real ImmuneVax run</h2>
+        </div>
+        <span id="privateRunBadge" class="status">No private run loaded</span>
+      </div>
+      <div class="private-run-layout">
+        <div>
+          <label class="adapter-card private-run-upload" for="privateRunFile">
+            <input id="privateRunFile" type="file" accept=".json,application/json">
+            <strong>Choose sanitized private-run JSON</strong>
+            <span>The file is read locally in this browser. Nothing is uploaded.</span>
+            <em>Accepts immunevax-public-run-1.0</em>
+          </label>
+          <div id="privateRunSummary" class="summary-box">Run the private ImmuneVax core, export a sanitized public run, then load that file here.</div>
+          <div id="privateRunMetrics" class="private-run-metrics"></div>
+        </div>
+        <div>
+          <canvas id="privateRunCanvas" width="900" height="340" aria-label="Sanitized private ImmuneVax simulation output"></canvas>
+          <div class="private-run-legend">
+            <span><i class="p-antigen"></i>Antigen</span>
+            <span><i class="p-apc"></i>APC</span>
+            <span><i class="p-cd4"></i>CD4</span>
+            <span><i class="p-cd8"></i>CD8</span>
+            <span><i class="p-b"></i>B / antibody</span>
+            <span><i class="p-cyt"></i>Cytokine</span>
+          </div>
+          <p class="note">The public page receives normalized trajectories and coarse provenance only. Private record IDs, raw API payloads, credentials, and source code are excluded by the private exporter.</p>
+        </div>
+      </div>
+      <div id="privateRunLimitations" class="private-run-limitations"></div>
+    </section>
+
     <section class="grid two">
       <div class="panel">
         <div class="panel-head">
-          <div><p class="eyebrow">3 · Integration map</p><h2>Private-backend roadmap</h2></div>
+          <div><p class="eyebrow">4 · Integration map</p><h2>Private-backend roadmap</h2></div>
           <span class="status safe">Modular adapters</span>
         </div>
         <div class="integration-list">
@@ -95,7 +130,7 @@
 
       <div class="panel">
         <div class="panel-head">
-          <div><p class="eyebrow">4 · Synthetic simulation preview</p><h2>Scenario output</h2></div>
+          <div><p class="eyebrow">5 · Synthetic simulation preview</p><h2>Scenario output</h2></div>
           <span class="status warning">Illustrative only</span>
         </div>
         <div class="scenario-buttons">
@@ -110,7 +145,7 @@
 
     <section class="panel">
       <div class="panel-head">
-        <div><p class="eyebrow">5 · Scientific record</p><h2>Provenance, uncertainty, and review</h2></div>
+        <div><p class="eyebrow">6 · Scientific record</p><h2>Provenance, uncertainty, and review</h2></div>
         <span id="reviewBadge" class="status warning">Pending</span>
       </div>
       <div class="record-grid">
