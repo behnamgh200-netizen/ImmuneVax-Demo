@@ -19,6 +19,7 @@ jobs:
           node --check app.js
           node --check live-demo.js
           node --check research-dashboard.js
+          node --check calibration-demo.js
 
       - name: Validate live demo assets
         run: |
@@ -28,6 +29,9 @@ jobs:
           test -f research-dashboard.html
           test -f research-dashboard.css
           test -f research-dashboard.js
+          test -f calibration-demo.html
+          test -f calibration-demo.css
+          test -f calibration-demo.js
           grep -q 'immuneRecognitionValue' live-demo.html
           grep -q 'computeImmuneRecognition' live-demo.js
           grep -q 'excludedHetatm' live-demo.js
@@ -35,8 +39,10 @@ jobs:
           grep -q 'saveSnapshotA' live-demo.js
           grep -q 'buildDemoRecord' live-demo.js
           grep -q 'reviewStatus' live-demo.html
+          grep -q 'private_parameter_values_included' calibration-demo.js
+          grep -q 'validation_weighted_log_rmse' calibration-demo.js
           grep -q 'not a biological probability' README.md
 
       - name: Enforce local-only live demo
         run: |
-          ! grep -E 'fetch\(|XMLHttpRequest|WebSocket|EventSource' live-demo.js research-dashboard.js
+          ! grep -E 'fetch\(|XMLHttpRequest|WebSocket|EventSource' live-demo.js research-dashboard.js calibration-demo.js
