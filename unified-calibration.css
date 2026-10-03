@@ -1,0 +1,25 @@
+/* Integrated human-calibration / cross-study validation panel for live-demo.html */
+#human-calibration{scroll-margin-top:84px}
+.calibration-intro{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:start}
+.calibration-flow{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;margin:14px 0 4px}
+.calibration-flow span{display:grid;place-items:center;min-height:54px;padding:8px;border:1px solid #24465a;border-radius:11px;background:#081722;color:#a9bfce;font-size:.68rem;text-align:center;position:relative}
+.calibration-flow span:not(:last-child)::after{content:"→";position:absolute;right:-8px;color:#5f8095;z-index:2}
+.calibration-privacy{display:grid;gap:7px;padding:16px;border:1px solid #234155;border-radius:15px;background:#091a26}
+.calibration-privacy strong{font-size:.8rem;color:#dff6ff}
+.calibration-privacy span{font-size:.69rem;color:#9eb5c6}
+.calibration-upload-box{display:grid;gap:6px;padding:20px;border:1px dashed #42677d;border-radius:14px;text-align:center;cursor:pointer;background:#081722;margin-top:14px}
+.calibration-upload-box input{display:none}.calibration-upload-box span{font-size:.72rem;color:#9eb5c6}
+.calibration-summary{margin-top:10px;padding:12px;border:1px solid #193747;border-radius:12px;color:#a8bdcb;background:#07151f;font-size:.75rem}
+.calibration-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.calibration-subpanel{border:1px solid #1e3d50;border-radius:15px;background:rgba(7,21,31,.7);padding:15px}
+.calibration-subhead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px}.calibration-subhead h3{margin:.12em 0;font-size:1.05rem}.calibration-subhead p{margin:0;color:#61d4ff;font-size:.63rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800}
+.calibration-metric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.calibration-metric{padding:12px;border:1px solid #1b394b;border-radius:11px;background:#081722}.calibration-metric span{display:block;color:#7f9caf;font-size:.66rem}.calibration-metric strong{display:block;margin-top:4px;font-size:1.15rem}.calibration-metric small{display:block;margin-top:3px;color:#7190a2;font-size:.61rem}
+.calibration-layer-list,.cross-study-list{display:grid;gap:8px}.calibration-layer-row,.cross-study-row{display:grid;grid-template-columns:1.5fr .8fr .8fr;gap:8px;align-items:center;padding:10px;border:1px solid #1b394b;border-radius:11px;background:#081722}.calibration-layer-row strong,.cross-study-row strong{font-size:.76rem}.calibration-layer-row span,.cross-study-row span{font-size:.68rem;color:#94adbd}
+.calibration-empty{padding:15px;border:1px dashed #31536a;border-radius:11px;color:#7892a4;text-align:center;grid-column:1/-1;font-size:.72rem}
+.calibration-chart{display:block;width:100%;height:310px;border:1px solid #173748;border-radius:13px;background:#06131d;margin-top:9px}.calibration-chart.small{height:255px}
+.calibration-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;color:#879faf;font-size:.66rem}.calibration-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}.cal-c1{background:#9b8cff}.cal-c2{background:#66e0ba}.cal-c3{background:#f3c75f}.cal-c4{background:#ff8eb4}.cal-c5{background:#ff9e66}.cal-c6{background:#62d5ff}.cal-h1{background:#62d5ff}.cal-h2{background:#ff8eb4}
+.calibration-boundary{padding:13px;border:1px solid #1b394b;border-radius:12px;background:#081722;color:#bed0db;font-size:.76rem}.calibration-limitations{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.calibration-limitations span{padding:6px 8px;border:1px solid #24465a;border-radius:999px;background:#091a26;color:#9fb5c5;font-size:.63rem}
+.calibration-note{color:#91aabb;font-size:.72rem;margin:10px 0 0}.validation-callout{margin-top:14px;border:1px solid #2c5368;border-radius:14px;padding:14px;background:linear-gradient(180deg,rgba(17,45,62,.72),rgba(7,24,35,.75))}.validation-callout strong{display:block;margin-bottom:4px}.validation-callout span{color:#9fb5c5;font-size:.72rem}
+@media(max-width:1000px){.calibration-intro,.calibration-grid{grid-template-columns:1fr}.calibration-flow{grid-template-columns:1fr 1fr}.calibration-flow span::after{display:none}}
+@media(max-width:650px){.calibration-metric-grid{grid-template-columns:1fr}.calibration-layer-row,.cross-study-row{grid-template-columns:1fr}.calibration-flow{grid-template-columns:1fr}.calibration-chart{height:260px}}
