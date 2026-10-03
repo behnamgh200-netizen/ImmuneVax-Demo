@@ -3,36 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ImmuneVax live scientific micro-demo using synthetic or locally uploaded PDB coordinates.">
-  <title>ImmuneVax — Live Scientific Micro-Demo</title>
+  <meta name="description" content="ImmuneVax integrated scientific demo: local protein-structure analysis plus sanitized human calibration and cross-study validation results.">
+  <title>ImmuneVax — Integrated Scientific Demo</title>
   <link rel="stylesheet" href="./live-demo.css">
+  <link rel="stylesheet" href="./unified-calibration.css">
 </head>
 <body>
   <nav class="topbar">
     <a class="brand" href="./index.html"><span class="mark">IV</span><span>ImmuneVax</span></a>
     <div class="nav-actions">
-      <span class="mode">Local-only demo</span>
-      <a class="button ghost" href="./research-dashboard.html">Research dashboard</a>\n      <a class="button ghost" href="./index.html">Back to overview</a>
+      <span class="mode">Integrated local demo</span>
+      <a class="button ghost" href="#human-calibration">Human validation</a>
+      <a class="button ghost" href="./research-dashboard.html">Research dashboard</a>
+      <a class="button ghost" href="./index.html">Back to overview</a>
     </div>
   </nav>
 
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">Live scientific micro-demo</p>
-        <h1>Inspect a small protein structure and simulate an immune-interaction scenario.</h1>
-        <p class="lede">This page performs real, local geometric calculations on 3D coordinates. The immune-response portion is a transparent educational heuristic, not a molecular docking engine or vaccine predictor.</p>
+        <p class="eyebrow">Integrated ImmuneVax scientific demo</p>
+        <h1>From structure inspection to population-level immune-model validation.</h1>
+        <p class="lede">This is one project with two connected scientific layers. The first performs real local calculations on an uploaded PDB and shows a deliberately simple APC-facing educational heuristic. The second loads a privacy-safe export from the private mechanistic core and shows human-data calibration, participant holdout, and external cross-study validation without exposing private parameters or raw records.</p>
       </div>
       <div class="safety-card">
-        <strong>What is real here</strong>
-        <span>Local PDB parsing</span>
-        <span>3D coordinate rendering</span>
+        <strong>Computed locally on this page</strong>
+        <span>PDB parsing & 3D coordinates</span>
         <span>Geometric surface proxies</span>
-        <span>Deterministic calculations</span>
-        <strong>What is illustrative</strong>
-        <span>APC engagement heuristic</span>
-        <span>Presentation / recognition timeline</span>
-        <span>Immune response score</span>
+        <span>Sanitized-result visualization</span>
+        <strong>Research-model evidence</strong>
+        <span>Population calibration / holdout metrics</span>
+        <span>External-study validation summaries</span>
+        <strong>Not claimed</strong>
+        <span>Clinical prediction or vaccine-success probability</span>
       </div>
     </section>
 
@@ -161,40 +164,19 @@
           </div>
 
           <div class="immune-summary-grid">
-            <div class="immune-metric">
-              <span>APC-like recognition index</span>
-              <strong id="immuneRecognitionValue">--%</strong>
-            </div>
-            <div class="immune-metric">
-              <span>Recognition band</span>
-              <strong id="immuneReadinessValue">--</strong>
-            </div>
-            <div class="immune-metric">
-              <span>Interpretation</span>
-              <strong id="immuneInterpretationValue">--</strong>
-            </div>
-            <div class="immune-metric">
-              <span>Demo-model confidence</span>
-              <strong id="immuneConfidenceValue">--%</strong>
-            </div>
+            <div class="immune-metric"><span>APC-like recognition index</span><strong id="immuneRecognitionValue">--%</strong></div>
+            <div class="immune-metric"><span>Recognition band</span><strong id="immuneReadinessValue">--</strong></div>
+            <div class="immune-metric"><span>Interpretation</span><strong id="immuneInterpretationValue">--</strong></div>
+            <div class="immune-metric"><span>Demo-model confidence</span><strong id="immuneConfidenceValue">--%</strong></div>
           </div>
 
           <div class="immune-progress-block">
-            <div class="immune-progress-label">
-              <span>Recognition index</span>
-              <span id="immuneRecognitionProgressText">0%</span>
-            </div>
-            <div class="immune-progress-track">
-              <div id="immuneRecognitionProgressBar" class="immune-progress-bar"></div>
-            </div>
+            <div class="immune-progress-label"><span>Recognition index</span><span id="immuneRecognitionProgressText">0%</span></div>
+            <div class="immune-progress-track"><div id="immuneRecognitionProgressBar" class="immune-progress-bar"></div></div>
           </div>
 
-          <p id="immuneSummaryText" class="immune-summary-text">
-            Run analysis to generate a simplified recognition interpretation.
-          </p>
-          <p class="immune-boundary">
-            This percentage is a demo index derived from geometric descriptors. It is not a probability of immune success, antigenicity, vaccine efficacy, or clinical protection.
-          </p>
+          <p id="immuneSummaryText" class="immune-summary-text">Run analysis to generate a simplified recognition interpretation.</p>
+          <p class="immune-boundary">This percentage is a demo index derived from geometric descriptors. It is not a probability of immune success, antigenicity, vaccine efficacy, or clinical protection.</p>
         </div>
       </div>
 
@@ -207,10 +189,9 @@
           <span class="status warning">Not a biological prediction</span>
         </div>
         <div id="timeline" class="timeline"></div>
-        <p class="note">The sequence is a visualization of the planned software workflow: encounter → processing → presentation → recognition → review. It does not claim to reproduce human physiology.</p>
+        <p class="note">The sequence is a visualization of the software workflow: encounter → processing → presentation → recognition → review. It does not claim to reproduce human physiology.</p>
       </div>
     </section>
-
 
     <section class="research-grid">
       <div class="panel">
@@ -222,33 +203,114 @@
           <span class="status safe">Local audit trail</span>
         </div>
         <div id="provenanceGrid" class="provenance-grid"></div>
-        <div class="method-note">
-          Every demo result is tied to its structure name, parser mode, analysis version, source type, scenario, and review state. This mirrors the provenance layer planned for the private project.
-        </div>
+        <div class="method-note">Every demo result is tied to its structure name, parser mode, analysis version, source type, scenario, and review state. This mirrors the provenance layer in the private research core.</div>
       </div>
 
       <div class="panel">
         <div class="panel-head">
           <div>
             <p class="eyebrow">7 · Integration readiness</p>
-            <h2>Where external scientific tools fit</h2>
+            <h2>Where scientific adapters fit</h2>
           </div>
-          <span class="status">Adapters only</span>
+          <span class="status">Modular boundary</span>
         </div>
         <div class="integration-list">
-          <div><strong>IEDB / ImmPort</strong><span>evidence sources</span><em>planned</em></div>
-          <div><strong>UniProt / PDB / NCBI</strong><span>sequence & structure metadata</span><em>planned</em></div>
-          <div><strong>AlphaFold / FoldX</strong><span>structural prediction & stability adapters</span><em>planned</em></div>
-          <div><strong>PhysiCell</strong><span>future cell-level simulation engine</span><em>planned</em></div>
+          <div><strong>IEDB / ImmPort</strong><span>evidence sources</span><em>adapter</em></div>
+          <div><strong>UniProt / PDB / NCBI</strong><span>sequence & structure metadata</span><em>adapter</em></div>
+          <div><strong>AlphaFold / FoldX</strong><span>structural prediction & stability</span><em>adapter</em></div>
+          <div><strong>PhysiCell</strong><span>future spatial cell simulation</span><em>next layer</em></div>
         </div>
-        <p class="note">No external service is called from this public demo. These cards show the intended modular adapter boundary.</p>
+        <p class="note">The browser demo itself makes no external request. Real-data calibration and validation are run in the private core and transferred here only through a sanitized allowlisted JSON export.</p>
+      </div>
+    </section>
+
+    <section id="human-calibration" class="panel">
+      <div class="panel-head">
+        <div>
+          <p class="eyebrow">8 · Human-data calibration & external validation</p>
+          <h2>Private mechanistic core, public-safe evidence viewer</h2>
+        </div>
+        <span id="statusBadge" class="status">Waiting for sanitized result</span>
+      </div>
+
+      <div class="calibration-intro">
+        <div>
+          <p class="note">This is not a second ImmuneVax product. It is the downstream validation layer of the same workflow. The structural micro-demo above illustrates the input/geometry side; this section visualizes aggregate outputs from the private mechanistic APC/T/B/cytokine model after human-data calibration and independent-study validation.</p>
+          <div class="calibration-flow" aria-label="ImmuneVax integrated workflow">
+            <span>Structure / evidence</span>
+            <span>Local descriptors</span>
+            <span>Mechanistic model</span>
+            <span>Human calibration</span>
+            <span>Participant holdout</span>
+            <span>External studies</span>
+            <span>Human review</span>
+          </div>
+        </div>
+        <div class="calibration-privacy">
+          <strong>Sanitized public boundary</strong>
+          <span>✓ aggregate fit & validation metrics</span>
+          <span>✓ normalized response trajectories</span>
+          <span>✓ source categories and scientific limitations</span>
+          <span>✕ fitted private parameter values</span>
+          <span>✕ private record IDs / raw database payloads</span>
+          <span>✕ credentials / private source code</span>
+        </div>
+      </div>
+
+      <label class="calibration-upload-box" for="runFile">
+        <input id="runFile" type="file" accept=".json,application/json">
+        <strong>Load sanitized ImmuneVax private-core JSON</strong>
+        <span>Read locally in this browser. Nothing is uploaded and no network request is made.</span>
+      </label>
+      <div id="runSummary" class="calibration-summary">Generate an allowlisted <code>immunevax-public-run-1.0</code> export in the private core, then load it here.</div>
+
+      <div class="calibration-grid">
+        <div class="calibration-subpanel">
+          <div class="calibration-subhead"><div><p>Calibration quality</p><h3>Train / participant holdout</h3></div><span class="status safe">Aggregate only</span></div>
+          <div id="calibrationMetrics" class="calibration-metric-grid"><div class="calibration-empty">No calibrated run loaded.</div></div>
+          <p class="calibration-note">These are error metrics against selected public cohorts. Lower RMSE means closer agreement on the modeled scale; it is not a clinical-accuracy percentage.</p>
+        </div>
+
+        <div class="calibration-subpanel">
+          <div class="calibration-subhead"><div><p>Biological layers</p><h3>Layer-specific train / holdout error</h3></div><span class="status">Population level</span></div>
+          <div id="layerMetrics" class="calibration-layer-list"><div class="calibration-empty">No layer metrics loaded.</div></div>
+        </div>
+      </div>
+
+      <div class="calibration-grid">
+        <div class="calibration-subpanel">
+          <div class="calibration-subhead"><div><p>Independent studies</p><h3>Cross-study T-cell / cytokine validation</h3></div><span class="status warning">No refitting</span></div>
+          <div id="crossStudyMetrics" class="calibration-metric-grid"><div class="calibration-empty">Load a Phase-7 sanitized result to see external validation.</div></div>
+          <div id="crossStudyStudies" class="cross-study-list" style="margin-top:9px"><div class="calibration-empty">No external study metrics loaded.</div></div>
+          <div class="validation-callout"><strong>External validation rule</strong><span id="crossStudyBoundary">The external studies are scored only after model fitting; they do not tune parameters and are not a vaccine-success probability.</span></div>
+        </div>
+
+        <div class="calibration-subpanel">
+          <div class="calibration-subhead"><div><p>Scientific boundary</p><h3>What the private-core result means</h3></div><span class="status warning">Non-clinical</span></div>
+          <div id="scientificStatus" class="calibration-boundary">Load a sanitized run to inspect its scientific status and limitations.</div>
+          <div id="limitations" class="calibration-limitations"></div>
+        </div>
+      </div>
+
+      <div class="calibration-subpanel" style="margin-top:14px">
+        <div class="calibration-subhead"><div><p>Mechanistic trajectory</p><h3>Normalized APC / T-cell / antibody / cytokine response</h3></div><span class="status">Public-safe trajectory</span></div>
+        <canvas id="trajectoryCanvas" class="calibration-chart" width="1200" height="430" aria-label="Normalized private-core immune response trajectories"></canvas>
+        <div class="calibration-legend">
+          <span><i class="cal-c1"></i>APC</span><span><i class="cal-c2"></i>CD4</span><span><i class="cal-c3"></i>CD8</span><span><i class="cal-c4"></i>Antibody</span><span><i class="cal-c5"></i>IFN-γ</span><span><i class="cal-c6"></i>IL-6</span>
+        </div>
+      </div>
+
+      <div class="calibration-subpanel" style="margin-top:14px">
+        <div class="calibration-subhead"><div><p>Humoral layer</p><h3>Normalized IgM / IgG kinetics</h3></div><span class="status">SDY1370 layer</span></div>
+        <canvas id="humoralCanvas" class="calibration-chart small" width="900" height="330" aria-label="Normalized IgM and IgG kinetics"></canvas>
+        <div class="calibration-legend"><span><i class="cal-h1"></i>IgM</span><span><i class="cal-h2"></i>IgG</span></div>
       </div>
     </section>
 
     <section class="panel compare-panel">
       <div class="panel-head">
         <div>
-          <p class="eyebrow">8 · Compare runs</p>
+          <p class="eyebrow">9 · Compare structure runs</p>
           <h2>Side-by-side local comparison</h2>
         </div>
         <span class="status">Interview tool</span>
@@ -259,30 +321,26 @@
         <button id="saveSnapshotB" class="button ghost" type="button">Save current as B</button>
         <button id="clearSnapshots" class="small-button" type="button">Clear comparison</button>
       </div>
-      <div id="comparisonArea" class="comparison-area">
-        <div class="comparison-empty">Save two analyses to compare them.</div>
-      </div>
+      <div id="comparisonArea" class="comparison-area"><div class="comparison-empty">Save two analyses to compare them.</div></div>
     </section>
 
     <section class="panel review-panel">
       <div class="panel-head">
         <div>
-          <p class="eyebrow">9 · Human scientific review</p>
+          <p class="eyebrow">10 · Human scientific review</p>
           <h2>Researcher remains the final gate</h2>
         </div>
         <span id="reviewBadge" class="status warning">Pending</span>
       </div>
       <div class="review-grid">
-        <label>
-          Review state
+        <label>Review state
           <select id="reviewStatus">
             <option value="Pending">Pending</option>
             <option value="Reviewed">Reviewed</option>
             <option value="Needs revision">Needs revision</option>
           </select>
         </label>
-        <label>
-          Reviewer note
+        <label>Reviewer note
           <textarea id="reviewNotes" rows="4" placeholder="Example: Geometry is interpretable, but immune interpretation remains illustrative."></textarea>
         </label>
       </div>
@@ -290,14 +348,13 @@
         <button id="saveReview" class="button primary" type="button">Save review locally</button>
         <button id="exportRecord" class="button ghost" type="button">Export demo record JSON</button>
       </div>
-      <p class="note">Review state is stored only in memory for this browser tab and is included in the exported demo record.</p>
+      <p class="note">Review state is stored only in memory for this browser tab and is included in the exported structure-demo record.</p>
     </section>
-
 
     <section class="panel report-panel">
       <div class="panel-head">
         <div>
-          <p class="eyebrow">10 · Report</p>
+          <p class="eyebrow">11 · Structure report</p>
           <h2>Interview-ready scientific summary</h2>
         </div>
         <button id="copyReport" class="button ghost" type="button">Copy report</button>
@@ -308,5 +365,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="./live-demo.js"></script>
+  <script src="./calibration-demo.js"></script>
 </body>
 </html>
