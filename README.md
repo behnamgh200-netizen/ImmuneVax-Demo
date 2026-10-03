@@ -58,7 +58,7 @@ The public viewer rejects a sanitized run unless its privacy contract states tha
 
 ## Scientific boundary
 
-The geometric calculations are real and local. The APC-like recognition score and related timeline are deliberately simplified educational heuristics and are **not biological probabilities**.
+The geometric calculations are real and local. The displayed APC-like recognition percentage is **not a biological probability**; the score and related timeline are deliberately simplified educational heuristics.
 
 Sanitized mechanistic/calibration outputs are population-level research results. They are not clinical validation, patient-specific predictions, vaccine-efficacy probabilities, or vaccine recommendations.
 
