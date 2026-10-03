@@ -3,86 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="ImmuneVax sanitized human-calibration result viewer.">
-  <title>ImmuneVax — Human Calibration Viewer</title>
-  <link rel="stylesheet" href="./calibration-demo.css">
+  <meta http-equiv="refresh" content="0; url=./live-demo.html#human-calibration">
+  <meta name="robots" content="noindex">
+  <title>ImmuneVax — Human validation moved</title>
+  <script>
+    window.location.replace("./live-demo.html#human-calibration");
+  </script>
 </head>
 <body>
-  <nav class="topbar">
-    <a class="brand" href="./index.html"><span class="mark">IV</span><span>ImmuneVax</span></a>
-    <div class="nav-actions">
-      <span class="mode">Sanitized result viewer</span>
-      <a class="button ghost" href="./research-dashboard.html">Research dashboard</a>
-      <a class="button ghost" href="./live-demo.html">Structure demo</a>
-    </div>
-  </nav>
-
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Private-core → public-safe presentation</p>
-        <h1>Human calibration results without exposing the private model implementation.</h1>
-        <p class="lede">Load an allowlisted <code>immunevax-public-run-1.0</code> JSON exported by the private ImmuneVax core. The browser renders aggregate calibration quality and normalized trajectories locally.</p>
-      </div>
-      <div class="privacy-card">
-        <strong>Public boundary</strong>
-        <span>✓ aggregate fit metrics</span>
-        <span>✓ normalized trajectories</span>
-        <span>✓ model/version and source categories</span>
-        <span>✕ private parameter values</span>
-        <span>✕ raw database payloads / record IDs</span>
-        <span>✕ API credentials / source code</span>
-      </div>
-    </section>
-
-    <section class="panel upload-panel">
-      <div class="panel-head">
-        <div><p class="eyebrow">1 · Load private-core output</p><h2>Sanitized calibration run</h2></div>
-        <span id="statusBadge" class="status">Waiting for file</span>
-      </div>
-      <label class="upload-box" for="runFile">
-        <input id="runFile" type="file" accept=".json,application/json">
-        <strong>Choose sanitized ImmuneVax JSON</strong>
-        <span>Read locally. No upload and no network request.</span>
-      </label>
-      <div id="runSummary" class="summary-box">Generate a sanitized export from the private ImmuneVax core, then load it here.</div>
-    </section>
-
-    <section class="grid two">
-      <div class="panel">
-        <div class="panel-head"><div><p class="eyebrow">2 · Calibration quality</p><h2>Train / holdout</h2></div><span class="status safe">Aggregate only</span></div>
-        <div id="calibrationMetrics" class="metric-grid"><div class="empty">No calibration summary loaded.</div></div>
-        <p class="note">Error metrics describe agreement with the selected public datasets; they are not a vaccine-success probability or a clinical-accuracy percentage.</p>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><div><p class="eyebrow">3 · Biological layers</p><h2>Layer-specific error</h2></div><span class="status">Public-safe</span></div>
-        <div id="layerMetrics" class="layer-list"><div class="empty">No layer metrics loaded.</div></div>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel-head"><div><p class="eyebrow">4 · Mechanistic trajectories</p><h2>Normalized immune response</h2></div><span class="status warning">Non-clinical</span></div>
-      <canvas id="trajectoryCanvas" width="1200" height="430" aria-label="Normalized private-core immune response trajectories"></canvas>
-      <div class="legend">
-        <span><i class="c1"></i>APC</span><span><i class="c2"></i>CD4</span><span><i class="c3"></i>CD8</span><span><i class="c4"></i>Antibody</span><span><i class="c5"></i>IFN-γ</span><span><i class="c6"></i>IL-6</span>
-      </div>
-    </section>
-
-    <section class="grid two">
-      <div class="panel">
-        <div class="panel-head"><div><p class="eyebrow">5 · Humoral layer</p><h2>IgM / IgG kinetics</h2></div></div>
-        <canvas id="humoralCanvas" width="900" height="330" aria-label="Normalized IgM and IgG kinetics"></canvas>
-        <div class="legend"><span><i class="h1"></i>IgM</span><span><i class="h2"></i>IgG</span></div>
-      </div>
-      <div class="panel">
-        <div class="panel-head"><div><p class="eyebrow">6 · Scientific boundary</p><h2>What this result means</h2></div></div>
-        <div id="scientificStatus" class="boundary-text">Load a sanitized run to inspect its scientific status and limitations.</div>
-        <div id="limitations" class="limitations"></div>
-      </div>
-    </section>
-  </main>
-
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="./calibration-demo.js"></script>
+  <p>The human calibration viewer is now part of the unified ImmuneVax demo. <a href="./live-demo.html#human-calibration">Open the integrated human-validation section.</a></p>
 </body>
 </html>
